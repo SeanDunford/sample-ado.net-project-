@@ -1,0 +1,159 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Data;
+using System.Data.SqlClient;
+using System.Web.Configuration;
+
+
+
+public static class Query
+{
+    public static int Get_Orders(string aFilterName,
+                                     out string aErrorMessage)      //should have been void and updated the requestedCompanyInformation instance 
+                                                    //I intended  to set up rules that default.aspx.cs can only query DB
+                                                    //through query but retrieve results from requestedCompanyInformation
+                                                    //Query would store all relevant info in requestedCompanyInformation and return that object
+                                                   // then the requestedCompanyInformation would have all relevant info name/id/mOrders
+                                                    //in one data structure for easy data mgmt
+    {
+        requestedCompanyInformation lDropDownList = new requestedCompanyInformation();
+        SqlDataReader lOrdersDataReader = null;
+        SqlConnection lSqlConnection = null;
+        int lCounter = 0; 
+        try
+        {
+            lSqlConnection = Setup_Connection();
+            lOrdersDataReader = Get_OrderReader(aFilterName, lSqlConnection);
+            if (lOrdersDataReader.Read())
+            {
+                lCounter = (int)lOrdersDataReader["OrderCount"];
+            }
+            else
+                 aErrorMessage = "ERROR: lookup Failed";                 //some redundancy here 
+            if(lCounter == 0)
+            { aErrorMessage = "ERROR: lookup Failed";
+        }
+            else
+                 aErrorMessage = "No Error";
+        }
+        catch (Exception ex)
+        {
+             aErrorMessage = "ERROR: " + ex.Message;
+        }
+
+        finally
+        {
+            if (lOrdersDataReader != null)
+            {
+                lOrdersDataReader.Close();
+            }
+
+            if (lSqlConnection != null)
+            {
+                lSqlConnection.Close();
+            }
+        }
+
+        return lCounter;
+
+    }
+
+    public static requestedCompanyInformation Get_requestedCompanyInformation(string aFilterName,
+                                      out string  aErrorMessage)  //should have been named get customerName/ID
+    {
+        requestedCompanyInformation lDropDownList = new requestedCompanyInformation(); 
+        SqlDataReader lIdentificationDataReader = null;
+        SqlConnection lSqlConnection = null;
+        int lCounter = 0; 
+        aErrorMessage = "";
+
+        try
+        {
+            lSqlConnection = Setup_Connection();
+            lIdentificationDataReader = Get_Reader(aFilterName, lSqlConnection);
+                   
+            while(lIdentificationDataReader.Read())
+            {
+                lCounter++; 
+                lDropDownList.addToRequestedCompanyInformation((string)lIdentificationDataReader["CompanyName"], (string)lIdentificationDataReader["CustomerID"]);
+                //every loop save into a data collection then populate lDropDownList in main class 
+
+            }
+            if (lCounter == 0)
+             {
+                aErrorMessage = "Lookup failed";
+            }
+        }
+        catch (Exception ex)
+        {
+            aErrorMessage = "ERROR: " + ex.Message;
+        }
+
+        finally
+        {
+            if (lIdentificationDataReader != null)
+            {
+                lIdentificationDataReader.Close();
+            }
+
+            if (lSqlConnection != null)
+            {
+                lSqlConnection.Close();
+            }
+        }
+        return lDropDownList;
+
+    }
+
+
+    private static SqlConnection Setup_Connection()
+    {
+        String connection_string =
+WebConfigurationManager.ConnectionStrings["AddressTable"].ConnectionString;
+
+        SqlConnection lSqlConnection = new SqlConnection(connection_string);
+
+        lSqlConnection.Open();
+        return lSqlConnection;
+    }
+
+    private static SqlDataReader Get_OrderReader(string aFilterName,
+                                        SqlConnection aSqlConnection)
+    {
+    SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT COUNT(*) AS OrderCount FROM Orders " +
+                            //    "WHERE CustomerID = " + "'" + "@aFilterName" + "'";
+                            //could not get param to work, i would have liked to for security purposes
+                              "WHERE CustomerID = " + "'" + aFilterName.ToString() + "'";
+            cmd.Parameters.AddWithValue("@aFilterName",
+                                              aFilterName);
+            cmd.Connection = aSqlConnection;
+            return cmd.ExecuteReader();
+    }
+
+    private static SqlDataReader Get_Reader(string aFilterName,
+                                        SqlConnection aSqlConnection)
+    {
+        
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT CompanyName, CustomerID FROM Customers " +
+                                 //"WHERE CustomerID LIKE " + "'" + "@aFilterName" + "%'";
+                                 //could not get param to work, i would have liked to for security purposes
+                                  "WHERE CompanyName LIKE " + "'" + aFilterName.ToString() + "%'";
+            cmd.Parameters.AddWithValue("@aFilterName",
+                                          aFilterName);
+            cmd.Connection = aSqlConnection;
+            return cmd.ExecuteReader();
+        }
+    }
+

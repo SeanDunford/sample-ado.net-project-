@@ -1,0 +1,33 @@
+body
+{
+font-family:Arial;
+font-size:x-large;
+}
+div
+{
+text-align:center;
+color:Red;
+}
+.Heading
+{
+color:Blue;
+}
+.Content
+{
+color:Black;
+text-align:justify;
+font-size:small;
+}
+table
+{
+font-family: Arial, Sans-Seriff;
+border:solid 1px;
+border-collapse: collapse;
+margin:auto;
+}
+th, td
+{
+	border:solid 1px;
+	padding: 5px;
+	text-align:center;
+}

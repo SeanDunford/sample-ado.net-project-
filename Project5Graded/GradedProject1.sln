@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Project5Graded", ".", "{C6BE4536-8F50-42FF-8362-4645333038CA}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/GradedProject1"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\Dropbox\USF\Web apps\Assignments\GradedProject1\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\GradedProject1\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/GradedProject1"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\Dropbox\USF\Web apps\Assignments\GradedProject1\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\GradedProject1\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49862"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6BE4536-8F50-42FF-8362-4645333038CA}.Debug|.NET.ActiveCfg = Debug|.NET
+		{C6BE4536-8F50-42FF-8362-4645333038CA}.Debug|.NET.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

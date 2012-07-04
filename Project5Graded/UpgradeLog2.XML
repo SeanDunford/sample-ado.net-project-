@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="GradedProject1">
+</Property><Property Name="Solution File" Value="C:\Users\sdunford\Dropbox\USF\Web apps\Assignments\Project5Graded\GradedProject1.sln">
+</Property><Property Name="User Options File" Value="C:\Users\sdunford\Dropbox\USF\Web apps\Assignments\Project5Graded\GradedProject1.suo">
+</Property><Property Name="Date" Value="Friday, June 22, 2012">
+</Property><Property Name="Time" Value="14:30 PM">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="GradedProject1.sln" Description="File successfully backed up as C:\Users\sdunford\Dropbox\USF\Web apps\Assignments\Project5Graded\Backup1\GradedProject1.sln">
+</Event><Event ErrorLevel="0" Project="" Source="GradedProject1.suo" Description="File successfully backed up as C:\Users\sdunford\Dropbox\USF\Web apps\Assignments\Project5Graded\Backup1\GradedProject1.suo">
+</Event><Event ErrorLevel="1" Project="Project5Graded" Source="..\Project5Graded" Description="Warning: The project file is being backed up to a relative path that differs from the original solution relative path.  The difference in folder hierarchy may create problems in opening or building the backed up solution and project.">
+</Event><Event ErrorLevel="0" Project="" Source="GradedProject1.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="GradedProject1.sln" Description="Converted">
+</Event></UpgradeLog>
